@@ -1,0 +1,527 @@
+* {
+    margin: 0;
+    /*外边距 */
+    padding: 0;
+    /*内边距 ，修改其原本默认的大小*/
+}
+
+/* 上下居中，两端对齐 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    /* 弹性布局 */
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    background: 0;
+    padding: 10px 10%;
+    /* 上，右，下，左 边距 */
+    background: rgba(255, 255, 255, 0.8);
+    /* 给透明度 */
+}
+
+audio {
+    z-index: 5;
+    position: absolute;
+    display: flex;
+    margin-left: 25%;
+    opacity: 0.1;
+    -webkit-transition: all 2s;
+    -moz-transition: all 2s;
+    -ms-transition: all 2s;
+    transition: all 2s;
+}
+
+audio:hover {
+    opacity: 1;
+
+}
+
+.logo h1 {
+    color: rgb(115, 193, 202);
+    letter-spacing: 5px;
+    font-size: 20px;
+
+}
+
+.nov a {
+    text-decoration: none;
+    color: aqua;
+    font-size: 16px;
+    margin-left: 20px;
+}
+
+.banner {
+    width: 100%;
+    /* 设置第一张图片的高度 */
+    height: 50vh;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 上下属性自动裁剪 */
+}
+
+#btn {
+    display: flex;
+    /* display: flex;
+        /* align-items: center; */
+    justify-content: left;
+    /* justify-content: center; */
+    transition: 0.5s;
+    margin-top: 50px;
+    border-radius: 95%;
+    background-color: #9bbe9f;
+    color: #71e86f;
+    border: none;
+
+}
+
+#about {
+    display: flex;
+    justify-content: space-between;
+    /* 两端对齐 */
+    width: 80%;
+    margin: 30px auto;
+}
+
+.about-img {
+    width: 35%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.about-img img {
+    width: 200px;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.about-text {
+    list-style: none;
+    color: rgb(52, 188, 65);
+    text-overflow: 10;
+    font-size: 16px;
+    width: 80%;
+    font-weight: 300;
+}
+
+.about-text textarea {
+    display: block;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    width: 800px;
+    margin-top: 10px;
+    line-height: 1.8;
+    text-indent: 2em;
+    height: 200px;
+    margin: 5px 0;
+    color: #03a363;
+    background-color: rgba(112, 205, 210, 0.5);
+}
+
+.about-text p {
+    line-height: 1.8;
+    text-indent: 2em;
+    /* 首行缩进 */
+    margin: 5px 0;
+    /* 上下边距 */
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    /* justify-content: center; */
+    /* 使用弹性布局,会导致title3失效 */
+    margin-top: 30px;
+}
+
+/* 设置标题的位置,属性的地方 */
+.title h3 {
+    font-size: 20px;
+    color: #2c9747e8;
+    letter-spacing: 5px;
+    margin: 0 20px;
+    /* 字符之间的距离 */
+}
+
+.title.line {
+    width: 60px;
+    height: 9px;
+    background: #0d0124;
+    /* 调线的 */
+}
+
+
+
+/*  */
+
+/* #work ul li {
+    list-style: none;
+    width: 40%;
+} */
+
+/* #work ul li img {
+    display: block;
+    /* 消去图片与文本之间的距离,快捷元素? 行类元素是什么 */
+/* object-fit: cover;
+    border-radius: 0%; */
+/* 修饰图片，改边角弧度  10px,10px,0,0*/
+/* } */
+
+/* #work ul li p { */
+/* padding: 10px; */
+/* 页边距意思是上下左右都是10px */
+/* background: #999;
+    设置背景颜色 */
+/* text-align: center;
+    /* 文本居中 */
+/* font-size: 10px; */
+/* 字体大小的修改 */
+/* font-weight: bold; */
+/* 字体加粗 */
+/* color: black; */
+/* 修改颜色 */
+/* } */
+#like {
+    /* 上下30,左右居中 */
+    width: 1200px;
+    margin: 30px auto;
+}
+
+#like span {
+    background: #599ba6;
+    padding: 5px 10px;
+    /* 内边距 */
+    border-radius: 6px;
+    margin-right: 10px;
+    /* 右侧内边距 */
+}
+
+#like span:first-child {
+    background: #69e785;
+    color: #ef9139;
+    /* 分清字体颜色与背景颜色 */
+}
+
+#like span:nth-child(2) {
+    background: #d0eb92;
+    color: #3bcfa8;
+}
+
+#like span:nth-child(3) {
+    background: #baa0e2;
+    color: #3a459745;
+}
+
+#like span:last-child {
+    background: #7ee2f4;
+    color: #f9a5d9;
+}
+
+/* #like span: */
+/* 用同样的方法选其他标签,什么child的 */
+.contact {
+    width: 1200px;
+    margin: 30px auto;
+
+}
+
+.contact input {
+    display: block;
+    /* 快捷元素,独占一行 */
+    width: 200px;
+    height: auto;
+    padding-left: 10px;
+    /* outline: none;让鼠标点上文本无效果的作用 */
+    margin-bottom: 10px;
+}
+
+.contact textarea {
+    display: block;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    width: 800px;
+    margin-top: 10px;
+
+}
+
+.contact button {
+    cursor: pointer;
+    display: block;
+    width: 120px;
+    height: 30px;
+    margin: 30px;
+
+    color: aliceblue;
+    background: #289964;
+    border: none;
+    /* 外边距颜色 */
+    border-radius: 10px;
+}
+
+.footer {
+    text-align: center;
+    /* 居中 */
+    color: #050a07;
+    background: #999;
+}
+
+/* 以下是轮播图的css代码 */
+#work {
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.main {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    /* 超出隐藏 */
+    overflow: hidden;
+}
+
+.sw {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* 加上动画 */
+    transition: .5s ease;
+}
+
+.sw img {
+    /* width: 600px;
+    height: 300px; */
+    background-size: 100%;
+}
+
+.sw {
+
+    width: auto;
+    height: auto;
+}
+
+/* 按钮属性的位置 */
+.on {
+    position: absolute;
+    bottom: 5%;
+    right: 30%;
+    display: flex;
+}
+
+.on li {
+    user-select: none;
+    cursor: pointer;
+    list-style: none;
+    margin: 0 20px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.on li:hover,
+.on li.active {
+    background-color: #03a363;
+}
+
+/* 箭头的设置 */
+.main span {
+    user-select: none;
+    cursor: pointer;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    line-height: 50px;
+    font-size: 20px;
+    position: absolute;
+}
+
+.left {
+    top: 40%;
+    left: 0;
+}
+
+.right {
+    top: 40%;
+    right: 0;
+}
+
+/* #writing ul { */
+/* 用弹性布局自动根据去加高度；若是浮动会把下面的内容抵掉 */
+/* display: flex;
+    justify-content: space-between; */
+/* 两端对齐，中端留空格 */
+/* width: 1200px; */
+/* 修改内容与标题之间的距离 */
+/* margin: 30px auto; */
+/* //居中 */
+
+/* }  */
+
+/* #writing ul li { */
+/* 无序列表前面默认的有实心圆可以去掉 */
+
+/* list-style: none; */
+/* width: 19%; */
+/* } */
+
+/* #writing ul li img { */
+/* display: block;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover; */
+/* 裁剪不会上下左右压缩 */
+
+/* } */
+
+/* #writing ul li p {
+    padding: 10px;
+    font-size: 16px; */
+/* 设置字体  颜色color*/
+/* color: #f5fef5;
+    background: #6ff48e;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+} */
+
+/*添加文字的属性 */
+.wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 200px;
+    margin: 10px auto;
+
+}
+
+.pic {
+    /* float: left; */
+    display: block;
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    /* object-fit: cover; */
+    /* background-image: url("/图片/风景图/saying1.jpg");
+    background-image: url("/图片/风景图/saying2.jpg");
+    background-image: url("/图片/风景图/saying3.jpg");
+    background-image: url("/图片/风景图/saying4.jpg"); */
+    background-image: url("/图片/风景图/saying5.jpg");
+    position: relative;
+    width: 19%;
+    height: 200px;
+    background-size: 100%;
+
+}
+
+/* 移动端开始**************************** */
+@media screen and (max-width:768px) {
+    .pic {
+
+        background-image: url("/图片/风景图/saying1.jpg");
+
+    }
+
+    .info p {
+        font-size: 8px;
+        padding: 10px auto;
+    }
+}
+
+/* 移动端结束**************************** */
+/* ipad端开始**************************** */
+@media screen and (max-width:992px) and (min-width:768px) {
+    .pic {
+
+        background-image: url("/图片/风景图/saying2.jpg");
+
+    }
+
+    .info p {
+        font-size: 16px;
+        padding: 8px auto;
+    }
+}
+
+/* ipad端开始**************************** */
+/* pc端开始**************************** */
+@media screen and (min-width:992px) {
+    .pic {
+
+        background-image: url("/图片/风景图/saying3.jpg");
+
+    }
+
+    .info p {
+        font-size: 20px;
+        padding: 10px auto;
+    }
+}
+
+/* pc端开始**************************** */
+.info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    /* 红色 绿色 蓝色 透明度 */
+    background-color: rgba(255, 255, 255, 0.5);
+    /* color: #145a66; */
+    /* 文本对齐居中 */
+    text-align: center;
+    /* 透明度为0，让他不显示 */
+    opacity: 0;
+}
+
+h4,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.info h4 {
+    /* position: relative; */
+    text-align: center;
+    margin-top: 30px;
+    background-color: #d8f5d4;
+    padding: 10px;
+    color: #335753;
+}
+
+.info p {
+
+    text-align: center;
+    color: #027d42;
+}
+
+.info a {
+    /* 首先清楚默认样式 */
+    text-decoration: none;
+    color: #35a8de;
+    font-size: 16px;
+    /* background-color: #e0e6e0; */
+    padding: 5px;
+    margin: auto;
+
+}
+
+/* 鼠标接替的效果 当鼠标放入pic盒子中 让info执行下列代码*/
+.pic:hover .info {
+    opacity: 1;
+}

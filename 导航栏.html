@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- id在一个网页中一个名字只能出现一次 -->
+<!-- 需要跳转到相应的地方，需要用id，而class可以用多次，id是#加名字，class是.加名字？ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lxy个人网页</title>
+    <link rel="stylesheet" href="css/导航栏.css">
+    <!-- 显示区 -->
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="switch">
+        <button id="btn">开关灯</button>
+        <script>
+            var btn = document.getElementById('btn');
+            var flag = 0;
+            btn.onclick = function () {
+                if (flag == 0) {
+                    document.body.style.backgroundColor = 'black';
+                    flag = 1;
+                } else {
+                    document.body.style.backgroundColor = '#fff';
+                    flag = 0;
+                }
+            }
+        </script>
+    </div>
+    <div class="header">
+        <div class="logo">
+            <h1>网页制作</h1>
+        </div>
+        <audio controls autoplay>
+            <source src="/Aiden Adair - Mr. Forgettable.mp3">
+        </audio>
+        <div class="nov">
+            <a href="导航栏.html">首页</a>
+            <a href="#about">书籍推荐</a>
+            <a href="#work">风景推荐</a>
+            <a href="#writing">文案推荐</a>
+            <a href="#like">爱好推荐</a>
+            <a href="#content">调查表格</a>
+
+        </div>
+    </div>
+    <div class="banner">
+        <img src="图片/beijing 1.jpg" alt="" />
+    </div>
+
+    <div class="title">
+        <div class="line"></div>
+        <h3>书籍推荐</h3><br />
+        <div class="line"></div>
+    </div>
+    <div id="about">
+        <div class="about-img">
+            <img src="图片/pic 1.jpg" alt="" />
+
+        </div>
+        <div class="about-text">
+            <form>
+                <textarea name="" id="" cols="30" rows="10">《活着》是中国当代作家余华创作的长篇小说，首次发表于《收获》1992年第6期。
+    《活着》讲述了在大时代背景下，随着内战、三反五反、大跃进、“文化大革命”等社会变革，徐福贵的人生和家庭不断经受着苦难，到了最后所有亲人都先后离他而去，仅剩下年老的他和一头老牛相依为命。小说以普通、平实的故事情节讲述了在急剧变革的时代中福贵的不幸遭遇和坎坷命运，在冷静的笔触中展现了生命的意义和存在的价值，揭示了命运的无奈，与生活的不可捉摸。
+
+</textarea>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="title">
+        <div class="line"></div>
+        <h3>风景推荐</h3>
+        <div class="line"></div>
+    </div>
+
+    <div id="work">
+        <!-- 我的作品无序列表 -->
+        <div class="main">
+            <div class="sw">
+                <img src="图片/风景图/北京故宫.jpg" alt="">
+                <img src="图片/风景图/大理古城.jpg" alt="">
+                <img src="图片/风景图/西安.jpg" alt="">
+                <img src="图片/风景图/西藏.jpg" alt="">
+            </div>
+            <ul class="on">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <span class="left">&lt;</span>
+            <span class="right">&gt;</span>
+        </div>
+    </div>
+    <script>
+        // 获取装图片的盒子
+        const imgBox = document.querySelector('.sw');
+        // 获取按钮
+        const btns = document.querySelectorAll('span');
+        // 获取li标签
+        const lis = document.querySelectorAll('.on li')
+        // 复制第一张图片到最后，无缝轮播的关键
+        const copyImg = imgBox.firstElementChild.cloneNode();
+        imgBox.appendChild(copyImg);
+        // 定义图片的位置
+        let index = 0;
+        // 设置节流，让图片切换的时间固定
+        let lock = true;
+        // 按钮点击
+        // 设置定时器
+        let timer = null;
+
+        // 改变li是不是有active类的方法
+        function changeLi(index) {
+            lis.forEach((li, idx) => {
+                // 先移除所有的active
+                if (li.classList.contains('active')) { li.classList.remove('active'); }
+                // 给当前的li加上
+                if (index === idx) {
+                    li.classList.add('active');
+                }
+            })
+        }
+        // li点击事件
+        lis.forEach((li, idx) => {
+            li.onclick = () => {
+                index = (idx - 1);//因为最后有一张图片所以坐标要减一
+                btns[1].click();//切换图片
+                changeLi(index);
+            }
+        })
+        btns[0].onclick = (_) => {
+            if (!lock) return;
+            // console.log('oo')
+            // 先判断是不是第一张图片
+            if (index === 0) {
+                // 移动到我们复制的图片位置
+                index = imgBox.children.length - 1;
+                // 取消过渡动画,无缝衔接第一张图片
+                imgBox.style.transition = 'none';
+                imgBox.style.left = `${-index * 600}px`;
+                // 瞬间切换到我们复制图片位置的前一张
+                setTimeout(() => {
+                    index = imgBox.children.length - 2;
+                    // 把取消的动画加上
+                    imgBox.style.transition = '.5s ease';
+                    imgBox.style.left = `${-index * 600}px`;
+                    changeLi(index);
+                });
+            } else {
+                index--;
+                imgBox.style.left = `${-index * 600}px`;
+                changeLi(index);
+            }
+            // 关锁
+            lock = false;
+            setTimeout(() => {
+                // 500毫秒后开锁
+                lock = true;
+            }, 500)
+
+        };
+        btns[1].onclick = (_) => {
+            if (!lock) return;
+            // 坐标右移
+            index++;
+            // 把取消的动画加上
+            imgBox.style.transition = '.5s ease';
+            //    判断是不是到了我们复制的图片位置的前一张
+            if (index === imgBox.children.length - 1) {
+                //    这时候让坐标回到0，用定时器切换回到第一张
+                setTimeout(() => {
+                    index = 0;
+                    changeLi(index);
+                    // 取消过渡动画,无缝衔接第一张图片
+                    imgBox.style.transition = 'none';
+                    imgBox.style.left = `${-index * 600}px`;
+                    changeLi(index);
+                }, 500);
+            }
+            // 改变盒子的left
+            imgBox.style.left = `${-index * 600}px`;
+            changeLi(index);
+            lock = false;
+            setTimeout(() => {
+                // 500毫秒后开锁
+                lock = true;
+            }, 500);
+
+        };
+        // 轮播方法 可要可不要
+        function autoPlay() {
+            btns[1].click();
+
+        }
+
+        // 开启定时器
+        timer = setInterval(() => {
+            autoPlay();
+        }, 3000);
+        // 鼠标移入移出图片盒子清除和重新开启定时器
+        imgBox.onmouseover = () => {
+            clearInterval(timer);
+        }
+        imgBox.onmouseout = () => {
+            timer = setInterval(() => {
+                autoPlay();
+            }, 3000);
+        }
+
+    </script>
+    <div class="title">
+        <div class="line"></div>
+        <h3>文案推荐</h3>
+        <div class="line"></div>
+    </div>
+    <div id="writing">
+        <!-- <ul>
+            无序列表
+            <li>
+                <img src="图片/风景图/saying1.jpg" alt="" >
+                <p>文案1</p>
+            </li>
+            <li>
+                <img src="图片/风景图/saying2.jpg" alt="">
+                <p>文案2</p>
+            </li>
+            <li>
+                <img src="图片/风景图/saying3.jpg" alt="">
+                <p>文案3</p>
+            </li>
+            <li>
+                <img src="图片/风景图/saying4.jpg" alt="">
+                <p>文案4</p>
+            </li>
+            <li>
+                <img src="图片/风景图/saying5.jpg" alt="">
+                <p>文案5</p>
+            </li>
+        </ul> -->
+        <div class="wrap">
+            <div class="pic">
+                <div class="info">
+                    <!-- 标签语义化 -->
+                    <h4>文案1</h4>
+                    <p>
+                        失之东隅，收之桑榆.
+                    </p>
+                    <!-- 点击可以跳转，用a标签，一个网址 -->
+                    <a href=" https://baike.baidu.com/item/%E5%A4%B1%E4%B9%8B%E4%B8%9C%E9%9A%85%EF%BC%8C%E6%94%B6%E4%B9%8B%E6%A1%91%E6%A6%86/683626?fr=aladdin
+">释义</a>
+                </div>
+            </div>
+            <div class="pic">
+                <div class="info">
+                    <!-- 标签语义化 -->
+                    <h4>文案2</h4>
+                    <p>
+                        知其然知其所以然
+                    </p>
+                    <!-- 点击可以跳转，用a标签，一个网址 -->
+                    <a
+                        href="https://baike.baidu.com/item/%E7%9F%A5%E5%85%B6%E7%84%B6%E7%9F%A5%E5%85%B6%E6%89%80%E4%BB%A5%E7%84%B6/1646450?fr=aladdin">释义</a>
+                </div>
+            </div>
+            <div class="pic">
+                <div class="info">
+                    <!-- 标签语义化 -->
+                    <h4>文案3</h4>
+                    <p>
+                        风雨无阻是心态，
+                    </p>
+                    <p>风雨兼程是常态。</p>
+                    <!-- 点击可以跳转，用a标签，一个网址 -->
+                    <a href="https://baijiahao.baidu.com/s?id=1608187521837949201&wfr=spider&for=pc">释义</a>
+                </div>
+            </div>
+            <div class="pic">
+                <div class="info">
+                    <!-- 标签语义化 -->
+                    <h4>文案4</h4>
+                    <p>
+                        等春风得意，
+                    </p>
+                    <p>等时间嘉许。</p>
+                    <!-- 点击可以跳转，用a标签，一个网址 -->
+                    <a href="https://edu.iask.sina.com.cn/bdjx/CMumk3F6jw.html?ivk_sa=1024320u">释义</a>
+                </div>
+            </div>
+            <div class="pic">
+                <div class="info">
+                    <!-- 标签语义化 -->
+                    <h4>文案5</h4>
+                    <p>
+                        山茶花读不懂白玫瑰，
+                    </p>
+                    <p>北山的风吹不到南山尾。</p>
+                    <!-- 点击可以跳转，用a标签，一个网址 -->
+                    <a href="https://zhidao.baidu.com/question/1183853240572017059.html">释义</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="title">
+        <div class="line"></div>
+        <h3>爱好推荐</h3>
+        <div class="line"></div>
+    </div>
+    <div id="like">
+        <span>#跑步</span>
+        <span>#阅读</span>
+        <span>#听歌</span>
+        <span>#旅游</span>
+    </div>
+    <div class="title" id="content">
+        <div class="line"></div>
+        <h3>调查表格</h3>
+        <div class="line"></div>
+    </div>
+    <div class="contact">
+        <form action="">
+            <input type="text" placeholder="请输入你的姓名">
+            <select name="">
+                <option value="">男</option>
+                <option value="">女</option>
+                <textarea cols="30" rows="10" placeholder="请输入你想要问的问题"></textarea>
+                <button>提交</button>
+            </select>
+        </form>
+    </div>
+    <!-- 开关灯的 -->
+
+    <!-- 底部 -->
+    <P>设计制作:LXY</P>
+    </div>
+</body>
+
+</html>
